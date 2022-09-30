@@ -40,7 +40,19 @@ module.exports = {
             name: 'images/[hash]-[name].[ext]'
           } 
         }]
-      }
+      },
+      {
+        test: /\.(otf|ttf)$/,
+        use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            limit: 10000,
+            mimetype: 'application/font-woff',
+          },
+        }],
+    },
     ]
   },
   plugins: [],
