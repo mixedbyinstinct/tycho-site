@@ -42,6 +42,7 @@ background-color: #0a0e38;
   color: #fdfdfd;
   height: 60px;
   width: 60px;
+  pointer-events: none;
 }
 & img {
     height: 36px;
@@ -87,6 +88,7 @@ background: none;
 animation: ${Dissolve} 1s ease-in;
 &:hover ${Overlay} {
     opacity: 0.97;
+    pointer-events: auto;
   }
 `;
 
