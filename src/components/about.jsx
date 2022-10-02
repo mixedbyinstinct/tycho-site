@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const AboutContainer = styled.div`
 display: flex; flex-flow: column nowrap;
@@ -16,10 +17,18 @@ justify-content: center; align-items: center;
 `;
 
 const About = () => {
+  const [bioText, setBioText] = useState('');
+  
+  useEffect(() => {
+    axios.get('/bio').then(({data}) => {
+      setBioText(data);
+    })
+  }, [])
+  
   return (
     <AboutContainer>
     <h2>Bio</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam diam diam, porttitor sit amet lobortis at, hendrerit eu lorem. Fusce dolor nunc, porta in commodo non, vulputate in dui. In diam nisi, aliquet et euismod vestibulum, vestibulum sit amet elit. Sed facilisis, metus nec cursus aliquet, erat libero congue sapien, sed suscipit nisi massa bibendum justo. Suspendisse sed aliquam urna. Praesent interdum magna non dignissim semper. Nunc ac elementum ligula. Donec convallis nec elit nec facilisis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus sit amet tortor a risus finibus tincidunt et in lacus. Nullam gravida viverra tempus. Suspendisse interdum ipsum at nulla semper volutpat.</p>
+    <p>{bioText}</p>
     </AboutContainer>
   );
 }

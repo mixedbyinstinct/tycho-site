@@ -1,6 +1,9 @@
+
 const express = require('express');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
+const cors = require('cors');
+const path = require('path');
 
 // Setup
 const app = express();
@@ -17,8 +20,16 @@ const middleware = webpackMiddleware(compiler, {
   }
 });
 app.use(middleware);
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'text-files')));
+
+// API 
 app.get('/', (req, res) => {
   res.sendFile('index.html', { root: __dirname });
+});
+
+app.get('/bio', (req, res) => {
+  res.sendFile(path.join(__dirname, 'text-files', 'lorem.txt'));
 });
 
 // Launch app

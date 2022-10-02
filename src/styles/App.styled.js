@@ -10,7 +10,7 @@ from {
 to {
   opacity: 1;
 }
-`
+`;
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
@@ -39,7 +39,12 @@ body {
 }
 `;
 
-
+export const Separator = styled.div`
+width: 100%; height: 2px;
+border-radius: 3px;
+background-color: #808480;
+margin-top: 5px; margin-bottom: 5px;
+`
 
 export const Jumbotron = styled.div`
 display: flex;
@@ -60,6 +65,24 @@ height: 50vh;
 width: 85vw;
 border-radius: 15px;
 padding: 15px;
+`;
+
+export const ArtHeader = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+flex-flow: column nowrap;
+background-color: #b1b1b1;
+flex-shrink: 1;
+& h1 {
+  color: #fdfdfd;
+  font-size: 28px;
+}
+height: 55vh;
+width: 85vw;
+border-radius: 15px;
+margin-left: 15vw; margin-right: 15vw;
+padding: 25px;
 `;
 
 export const Button = styled.button`
@@ -113,7 +136,7 @@ export const Text = styled.div`
 export const Menu = styled.div`
 display: flex; flex-flow: column nowrap;
 align-items: center; justify-content: center;
-background-color: rgba(202, 202, 202, 0.9);
+background-color: rgba(202, 202, 202, 0.96);
 & ${Button} {
   font-size: 14px;
   background: none;
@@ -127,10 +150,10 @@ background-color: rgba(202, 202, 202, 0.9);
 & ${Button}:hover {
   background-color: #212021;
   color: #fdfdfd;
-  transition: 0.5s ease-in;
+  transition: 0.2s ease-in;
 }
-height: 75vh; width: 90vw;
+height: 75vh; width: 96vw;
 position: absolute;
-top: 15%;
-animation: ${Dissolve} 1s ease-in;
+top: 10%;
+animation: ${Dissolve} .5s ease-in;
 `
