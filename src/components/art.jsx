@@ -99,19 +99,19 @@ const Art = () => {
     <ArtBox>
     <img src={cover1} alt="143" />
     <Overlay>
-    <button><img src={spotifyLogo} alt="spotify" /></button>
+    <button onClick={() => window.open('https://open.spotify.com/album/7BA30stGZPngsjfKb4U0oO?si=bx5g5L9CQ0yPHKLFcyDZZw')}><img src={spotifyLogo} alt="spotify" /></button>
     </Overlay>
     </ArtBox>
     <ArtBox>
     <img src={cover2} alt="pt1" />
     <Overlay>
-    <button><img src={spotifyLogo} alt="spotify" /></button>
+    <button onClick={() => window.open('https://open.spotify.com/album/3IBIjA3vF1G2QrwwOTtQhS?si=qMXDDpZAQqSQfrxq_V29Gw')}><img src={spotifyLogo} alt="spotify" /></button>
     </Overlay>
     </ArtBox>
     <ArtBox>
     <img src={cover3} alt="pt cruisuer" />
     <Overlay>
-    <button><img src={spotifyLogo} alt="spotify" /></button>
+    <button onClick={() => window.open('https://open.spotify.com/album/1KSj4fuE8F4l2JmLobqyZR?si=sDKpaRKMSdWGhowdpfPTew')}><img src={spotifyLogo} alt="spotify" /></button>
     </Overlay>
     </ArtBox>
     </ArtRow>
@@ -126,13 +126,13 @@ const Art = () => {
     <ArtBox>
     <img src={cover2} alt="pt1" />
     <Overlay>
-    <button><img src={appleLogo} alt="spotify" /></button>
+    <button onClick={() => window.open('https://music.apple.com/us/album/tycho-cassini-meets-tycho-44-pt-1-ep/1646829306')}><img src={appleLogo} alt="spotify" /></button>
     </Overlay>
     </ArtBox>
     <ArtBox>
     <img src={cover3} alt="pt cruisuer" />
     <Overlay>
-    <button><img src={appleLogo} alt="spotify" /></button>
+    <button onClick={() => window.open('https://music.apple.com/us/album/tycho-cassini-meets-tycho-44-pt-2-ep/1646820010')}><img src={appleLogo} alt="spotify" /></button>
     </Overlay>
     </ArtBox>
     </ArtRow>
