@@ -4,6 +4,8 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const cors = require('cors');
 const path = require('path');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
 
 // Setup
 const app = express();
@@ -22,6 +24,8 @@ const middleware = webpackMiddleware(compiler, {
 app.use(middleware);
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'text-files')));
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json());
 
 // API 
 app.get('/', (req, res) => {
@@ -31,6 +35,30 @@ app.get('/', (req, res) => {
 app.get('/bio', (req, res) => {
   res.sendFile(path.join(__dirname, 'text-files', 'lorem.txt'));
 });
+
+app.get('/music', (req, res) => {
+  const con = mysql.createConnection({
+    host: 'mysql.tycho-site.instinctmxd.com',
+    user: 'tychodb',
+    password: 'flamingo-22',
+    database: 'tychodb',
+  })
+  con.connect(function(err) {
+    if (err) {
+      return res.json({message: err});
+    }
+    let sql = "SELECT * FROM albums";
+    con.query(sql, function(err, result) {
+      if (err) {
+        return res.json({message: err});
+      }
+      return res.json({
+        success: true,
+        albums: result
+      })
+    })
+  })
+})
 
 // Launch app
 app.listen(port, () => {
