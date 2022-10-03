@@ -28,38 +28,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
 // API 
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: __dirname });
-});
-
-app.get('/bio', (req, res) => {
-  res.sendFile(path.join(__dirname, 'text-files', 'lorem.txt'));
-});
-
-app.get('/music', (req, res) => {
-  const con = mysql.createConnection({
-    host: 'mysql.tycho-site.instinctmxd.com',
-    user: 'tychodb',
-    password: 'flamingo-22',
-    database: 'tychodb',
-  })
-  con.connect(function(err) {
-    if (err) {
-      return res.json({message: err});
-    }
-    let sql = "SELECT * FROM albums";
-    con.query(sql, function(err, result) {
-      if (err) {
-        return res.json({message: err});
-      }
-      return res.json({
-        success: true,
-        albums: result
-      })
-    })
-  })
-})
-
+require('./routes')(app);
 // Launch app
 app.listen(port, () => {
   console.log(

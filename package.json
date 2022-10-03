@@ -1,7 +1,8 @@
 {
   "version": "1.0.0",
   "scripts": {
-    "database": "node dbInsert.js"
+    "database": "node dbInsert.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "@babel/core": "7.x.x",
