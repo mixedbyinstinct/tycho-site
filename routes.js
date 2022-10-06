@@ -19,16 +19,52 @@ module.exports = function(app) {
     })
     con.connect(function(err) {
       if (err) {
-        return res.json({message: err});
+        return res.json({
+          successs: false, 
+          message: err
+        });
       }
       let sql = "SELECT * FROM albums";
       con.query(sql, function(err, result) {
         if (err) {
-          return res.json({message: err});
+          return res.json({
+            success: false, 
+            message: err
+          });
         }
         return res.json({
           success: true,
           albums: result
+        })
+      })
+    })
+  });
+  
+  app.get('/news', (req, res) => {
+    const con = mysql.createConnection({
+      host: 'mysql.tycho-site.instinctmxd.com',
+      user: 'tychodb',
+      password: 'flamingo-22',
+      database: 'tychodb'
+    })
+    con.connect(function(err) {
+      if (err) {
+        return res.json({
+          successs: false, 
+          message: err
+        });
+      }
+      let sql = "SELECT * FROM news";
+      con.query(sql, function(err, result) {
+        if (err) {
+          return res.json({
+            success: false, 
+            message: err
+          });
+        }
+        return res.json({
+          success: true,
+          newsData: result
         })
       })
     })
