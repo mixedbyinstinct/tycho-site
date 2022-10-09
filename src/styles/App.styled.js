@@ -57,8 +57,8 @@ background-color: #212021;
   font-size: 28px;
 }
 & img {
-  height: 250px;
-  width: 200px;
+  height: 196.88px;
+  width: 350px;
   border-radius: 7.5px;
 }
 height: 50vh;
@@ -125,6 +125,12 @@ position: relative;
   color: #191919;
 }
 `;
+
+export const ScrollContainer = styled(Container)`
+height: 300px;
+overflow: scroll;
+scrollbar-color: dark;
+`
 
 export const Text = styled.div`
 & p {
