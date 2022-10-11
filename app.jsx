@@ -3,26 +3,29 @@ import ReactDOM from 'react-dom';
 import tychoFace from './Tycho_update_photo.jpg';
 import About from './components/about.jsx';
 import Art from './components/art.jsx';
-import { Container, ScrollContainer, Header, Menu, Button, Jumbotron, GlobalStyle, Text, Separator, ArtHeader } from './styles/App.styled';
+import { Container, ScrollContainer, Header, Menu, Button, Jumbotron, GlobalStyle, Text, Separator, ArtHeader, MenuButton } from './styles/App.styled';
 import axios from 'axios';
+import Socials from './components/socials.jsx';
 
 const App = () => {
   const bioRef = useRef(null);
   const newsRef = useRef(null);
   const artRef = useRef(null);
+  const socialsRef = useRef(null);
   
   const [showMenu, setShowMenu] = useState(false);
   const [showBio, setShowBio] = useState(false);
   const [showArt, setShowArt] = useState(false);
   const [newsData, setNewsData] = useState([]);
   const [debugText, setDebugText] = useState('');
+  const [showSocials, setShowSocials] = useState(false);
   
     
  const MenuScreen = () => {
   return (
     <Menu>
     <Button onClick={toggleBio}>About</Button>
-    <Button>Socials</Button>
+    <Button onClick={toggleSocials}>Socials</Button>
     <Button onClick={toggleNews}>News</Button>
     <Button onClick={toggleArt}>Music</Button>
     </Menu>
@@ -34,6 +37,13 @@ const App = () => {
       setShowMenu(false);
       bioRef.current.scrollIntoView();
     }
+    
+    async function toggleSocials(){
+      await setShowSocials(true);
+      setShowMenu(false);
+      socialsRef.current.scrollIntoView();
+    }
+    
     
     async function toggleNews() {
       await setShowMenu(false);
@@ -74,23 +84,22 @@ const App = () => {
     <GlobalStyle />
     <Container>
       {showMenu ? <MenuScreen /> : <div />}
-      <Jumbotron>
+      <Jumbotron onClick={() => setShowMenu(false)}>
         <h1>Tycho</h1>
         <img src={tychoFace} alt ="tycho" />
       </Jumbotron>
       <Header>
-        <p>Menu</p>
-        <Button onClick={toggleMenu}>Click</Button>
+        <Button onClick={toggleMenu}> Main Menu</Button>
       </Header>
       <h2>News</h2>
-      <ScrollContainer ref={newsRef}>
+      <ScrollContainer ref={newsRef} onClick={() => setShowMenu(false)}>
         <Text>
           {renderNewsData()}
         </Text>
         <Separator />
       </ScrollContainer>
       <h2>Bio</h2>
-      <ScrollContainer ref={bioRef}>
+      <ScrollContainer ref={bioRef} onClick={() => setShowMenu(false)}>
         {showBio ? <About /> : <div />}
         {showBio ? <Separator /> : <div />}
       </ScrollContainer>
@@ -100,6 +109,13 @@ const App = () => {
           <Art />
         </ArtHeader> : <div />}
       </div>
+      <div ref={socialsRef}>
+        {showSocials ?
+          <>
+          <h2>Social Media</h2>
+          <Socials />
+          </> : <div />}
+        </div>
       <p>{debugText}</p>
     </Container>
     </>
